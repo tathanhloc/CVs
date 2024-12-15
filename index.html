@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Steve Ngoc Quoc - CV</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+    <style>
+        .lg img {
+            width: 40px;
+            height: auto;
+            padding-right: 15px;
+            padding-top: 20px;
+        }
+
+        .lg>* {
+            transition: transform 0.3s ease;
+        }
+
+        .lg>*:hover {
+            transform: translateY(-8px);
+        }
+
+        /* If you have ::before pseudo-elements on the child elements */
+        .lg>*::before {
+            transition: transform 0.3s ease;
+        }
+
+        .lg>*:hover::before {
+            transform: translateY(-8px);
+        }
+
+
+        .linkEffect--insideOut::before {
+            content: "";
+            position: absolute;
+            width: 0%;
+            height: 2px;
+            bottom: -2px;
+            left: 50%;
+            background-color: #0c7373;
+            transition: width 0.3s ease, left 0.3s ease;
+        }
+
+        .linkEffect--insideOut:hover::before {
+            width: 100%;
+            left: 0;
+        }
+
+        .linkEffect {
+            display: inline-block;
+            position: relative;
+            text-decoration: none;
+            color: white;
+            transition: color 0.3s ease;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="avatar">
+            <img src="avatar.jpg" alt="">
+        </div>
+        <div class="name">
+            <h1><b>STEVE</b> NGOC QUOC <br>- Ngáo</h1>
+            <div class="specialize">Cybersecurity</div>
+            <div class="lg"><img src="logo-dai-bang.png" style="width: 50px; padding-left: 0px;"
+                    alt="School of North America"><img src="html.png" atl="HTML"><img src="css.png" alt="CSS"></div>
+            <ul class="contact">
+                <li>
+                    <span><i class="fas fa-phone"></i></span><b>+84 </b><a class="linkEffect linkEffect--insideOut"
+                    href="tel:+84972068726" target="_blank"
+                    style="color: #0c7373;text-decoration:none">972068726</a>
+                </li>
+                <li>
+                    <span><i class="fas fa-envelope"></i></span><a class="linkEffect linkEffect--insideOut"
+                    href="mailto:qn197823456@gmail.com" target="_blank"
+                    style="color: #0c7373;text-decoration:none">qn197823456@gmail.com</a>
+                </li>
+                <li>
+                    <span><i class="fas fa-globe"></i></span> <a class="linkEffect linkEffect--insideOut"
+                        href="https://www.ngao.tech" target="_blank"
+                        style="color: #0c7373;text-decoration:none">www.ngao.tech</a>
+                </li>
+            </ul>
+        </div>
+        <div class="info">
+            <ul>
+                <li>From <b>Phan Rang City</b> - Vietnam</li>
+                <li>05/09/2010</li>
+                <li>School of North America</li>
+            </ul>
+        </div>
+        <div class="intro">
+            <h2>INTRODUCE MYSELF</h2>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit eligendi omnis quasi dolores modi eius aliquam
+            ipsum soluta, dolore tenetur excepturi praesentium porro alias itaque enim labore qui necessitatibus
+            molestias hic cum deserunt ab! Illum sed eveniet distinctio, alias sunt repudiandae labore a dolorum
+            tenetur? Harum deleniti mollitia odio neque.
+        </div>
+        <div class="experience">
+            <h2>EXPERIENCE</h2>
+
+            <div class="item">
+                <h4>Frond-end Developer</h4>
+                <div class="time">
+                    <span>2020 - 2022</span>
+                    <span>ABC D company</span>
+                </div>
+                <div class="des">
+                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Architecto accusantium officia nobis quas
+                    excepturi consectetur quidem quia est neque doloremque.
+                </div>
+            </div>
+
+            <div class="item">
+                <h4>Student</h4>
+                <div class="time">
+                    <span>2015 - 2019</span>
+                    <span>ACDC University</span>
+                </div>
+                <div class="des">
+                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Architecto accusantium officia nobis quas
+                    excepturi consectetur quidem quia est neque doloremque.
+                </div>
+            </div>
+            <h2 class="skills">
+                SKILLS
+            </h2>
+            <ul>
+                <li>HTML</li>
+                <li>CSS</li>
+                <li>Bootstrap</li>
+                <li>Javascript</li>
+                <li>PHP</li>
+                <li>MySql</li>
+                <li>Git</li>
+                <li>Laravel</li>
+            </ul>
+
+        </div>
+        <div class="project">
+            <h2>PROJECTS</h2>
+            <div class="item">
+                <h4>Website shopping</h4>
+                <div class="time">
+                    2020
+                </div>
+                <div class="web">
+                    www.ngao.tech
+                </div>
+                <div class="location">
+                    Frond-end Developer
+                </div>
+                <div class="des">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto consequatur amet sed, est eum facilis
+                    repellendus
+                    atque perspiciatis iste porro nobis autem explicabo expedita fugiat nostrum. Eveniet eum autem
+                    culpa!
+                    <ul>
+                        <li>Lorem ipsum dolordolores.</li>
+                        <li>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consequuntur, dolores.</li>
+                        <li>Lorem ipsum dolor sit amet consectetur dolores.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="item">
+                <h4>Website shopping</h4>
+                <div class="time">
+                    2020
+                </div>
+                <div class="web">
+                    www.ngao.tech
+                </div>
+                <div class="location">
+                    Frond-end Developer
+                </div>
+                <div class="des">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto consequatur amet sed, est eum facilis
+                    repellendus
+                    atque perspiciatis iste porro nobis autem explicabo expedita fugiat nostrum. Eveniet eum autem
+                    culpa!
+                    <ul>
+                        <li>Lorem ipsum dolordolores.</li>
+                        <li>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consequuntur, dolores.</li>
+                        <li>Lorem ipsum dolor sit amet consectetur dolores.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="item">
+                <h4>Website shopping</h4>
+                <div class="time">
+                    2020
+                </div>
+                <div class="web">
+                    www.ngao.tech
+                </div>
+                <div class="location">
+                    Frond-end Developer
+                </div>
+                <div class="des">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto consequatur amet sed, est eum facilis
+                    repellendus
+                    atque perspiciatis iste porro nobis autem explicabo expedita fugiat nostrum. Eveniet eum autem
+                    culpa!
+                    <ul>
+                        <li>Lorem ipsum dolordolores.</li>
+                        <li>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consequuntur, dolores.</li>
+                        <li>Lorem ipsum dolor sit amet consectetur dolores.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div>
+            <button id="downloadPDF" class="download">Download PDF</button>
+        </div>
+    </div>
+    </div>
+
+
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+<script src="script.js"></script>
+
+</html>
