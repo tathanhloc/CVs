@@ -1,52 +1,71 @@
-document.getElementById("downloadPDF").addEventListener("click", async () => {
-    const container = document.querySelector(".container");
-    const downloadButton = document.getElementById("downloadPDF");
+document.addEventListener('DOMContentLoaded', function() {
+    const themeToggle = document.getElementById('themeToggle');
+    const body = document.body;
+    const icon = themeToggle.querySelector('i');
 
-    // Hide the download button before generating the PDF
-    downloadButton.style.display = "none";
+    // Function to set the theme
+    function setTheme(isDark) {
+        body.classList.toggle('dark-theme', isDark);
+        localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        updateIcon(isDark);
+    }
 
-    // Function to get the actual rendered height of the container
-    const getRenderedHeight = (element) => {
-        const styles = window.getComputedStyle(element);
-        const margin = parseFloat(styles.marginTop) + parseFloat(styles.marginBottom);
-        return Math.ceil(element.offsetHeight + margin);
-    };
+    // Function to update the icon
+    function updateIcon(isDark) {
+        icon.className = isDark ? 'fas fa-lightbulb' : 'fas fa-moon';
+    }
 
-    // Get the rendered dimensions
-    const renderedWidth = container.offsetWidth;
-    const renderedHeight = getRenderedHeight(container);
+    // Check for saved theme preference or use system preference
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+        setTheme(savedTheme === 'dark');
+    } else {
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        setTheme(prefersDark);
+    }
 
-    // Set up the PDF document with the rendered dimensions
-    const pdf = new jspdf.jsPDF({
-        orientation: 'portrait',
-        unit: 'px',
-        format: [renderedWidth, renderedHeight],
+    // Listen for theme toggle button clicks
+    themeToggle.addEventListener('click', function() {
+        setTheme(!body.classList.contains('dark-theme'));
     });
 
-    try {
-        // Use html2canvas to capture the container
-        const canvas = await html2canvas(container, {
-            scale: 2, // Increased scale for better quality
+    // Listen for system theme changes
+    window.matchMedia('(prefers-color-scheme: dark)').addListener(function(e) {
+        setTheme(e.matches);
+    });
+
+    // Existing PDF download functionality
+    const downloadButton = document.getElementById('downloadPDF');
+    downloadButton.addEventListener('click', generatePDF);
+
+    function generatePDF() {
+        const element = document.querySelector('.container');
+        const downloadButton = document.getElementById('downloadPDF');
+        const themeToggle = document.getElementById('themeToggle');
+        
+        // Temporarily hide the download button and theme toggle
+        downloadButton.style.display = 'none';
+        themeToggle.style.display = 'none';
+
+        html2canvas(element, {
+            scale: 1,
             useCORS: true,
-            allowTaint: true,
-            scrollX: 0,
-            scrollY: -window.scrollY,
-            width: renderedWidth,
-            height: renderedHeight,
-            windowWidth: document.documentElement.clientWidth,
-            windowHeight: document.documentElement.clientHeight
+            logging: false,
+        }).then(function(canvas) {
+            const imgData = canvas.toDataURL('image/png', 1.0);
+            const pdf = new jspdf.jsPDF({
+                orientation: 'portrait',
+                unit: 'px',
+                format: [canvas.width, canvas.height]
+            });
+
+            pdf.addImage(imgData, 'PNG', 0, 0, canvas.width, canvas.height);
+            pdf.save('steve_ngoc_quoc_resume.pdf');
+
+            // Show the download button and theme toggle again
+            downloadButton.style.display = '';
+            themeToggle.style.display = '';
         });
-
-        // Add the captured image to the PDF
-        const imgData = canvas.toDataURL("image/png");
-        pdf.addImage(imgData, "PNG", 0, 0, renderedWidth, renderedHeight);
-
-        // Save the PDF
-        pdf.save("CV.pdf");
-    } catch (error) {
-        console.error("Error generating PDF: ", error);
-    } finally {
-        // Restore the download button visibility
-        downloadButton.style.display = "block";
     }
 });
+

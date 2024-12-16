@@ -9,83 +9,36 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
     <link rel="icon" type="image/x-icon" href="cv.png">
-    <style>
-        .lg img {
-            width: 40px;
-            height: auto;
-            padding-right: 15px;
-            padding-top: 20px;
-        }
-
-        .lg>* {
-            transition: transform 0.3s ease;
-        }
-
-        .lg>*:hover {
-            transform: translateY(-8px);
-        }
-
-        /* If you have ::before pseudo-elements on the child elements */
-        .lg>*::before {
-            transition: transform 0.3s ease;
-        }
-
-        .lg>*:hover::before {
-            transform: translateY(-8px);
-        }
-
-
-        .linkEffect--insideOut::before {
-            content: "";
-            position: absolute;
-            width: 0%;
-            height: 2px;
-            bottom: -2px;
-            left: 50%;
-            background-color: #0c7373;
-            transition: width 0.3s ease, left 0.3s ease;
-        }
-
-        .linkEffect--insideOut:hover::before {
-            width: 100%;
-            left: 0;
-        }
-
-        .linkEffect {
-            display: inline-block;
-            position: relative;
-            text-decoration: none;
-            color: white;
-            transition: color 0.3s ease;
-        }
-    </style>
 </head>
 
 <body>
     <div class="container">
+        <button id="themeToggle" class="theme-toggle" aria-label="Toggle dark/light theme">
+            <i class="fas fa-moon"></i>
+        </button>
         <div class="avatar">
-            <img src="avatar.jpg" alt="">
+            <img src="avatar.png" alt="Steve Ngoc Quoc">
         </div>
         <div class="name">
-            <h1><b>STEVE</b> NGOC QUOC <br>- Ngáo</h1>
-            <div class="specialize">Cybersecurity</div>
-            <div class="lg"><img src="logo-dai-bang.png" style="width: 50px; padding-left: 0px;"
-                    alt="School of North America"><img src="html.png" atl="HTML"><img src="css.png" alt="CSS"></div>
+            <h1><b>STEVE</b> NGOC QUOC</h1>
+            <div class="specialize">Video Editor</div>
+            <div class="lg">
+                <img src="logo-dai-bang.png" style="width: 50px; padding-left: 0px;" alt="School of North America">
+                <img src="PREMIERE.png" alt="Adobe Premiere Pro">
+                <img src="AE.png" alt="Adobe After Effects">
+            </div>
             <ul class="contact">
                 <li>
                     <span><i class="fas fa-phone"></i></span><b>+84 </b><a class="linkEffect linkEffect--insideOut"
-                    href="tel:+84972068726" target="_blank"
-                    style="color: #0c7373;text-decoration:none">972068726</a>
+                        href="tel:+84972068726" target="_blank">972068726</a>
                 </li>
                 <li>
                     <span><i class="fas fa-envelope"></i></span><a class="linkEffect linkEffect--insideOut"
-                    href="mailto:qn197823456@gmail.com" target="_blank"
-                    style="color: #0c7373;text-decoration:none">qn197823456@gmail.com</a>
+                        href="mailto:qn197823456@gmail.com" target="_blank">qn197823456@gmail.com</a>
                 </li>
                 <li>
                     <span><i class="fas fa-globe"></i></span> <a class="linkEffect linkEffect--insideOut"
-                        href="https://www.ngao.tech" target="_blank"
-                        style="color: #0c7373;text-decoration:none">www.ngao.tech</a>
+                        href="https://www.ngao.tech" target="_blank">www.ngao.tech</a>
                 </li>
             </ul>
         </div>
@@ -98,26 +51,14 @@
         </div>
         <div class="intro">
             <h2>INTRODUCE MYSELF</h2>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit eligendi omnis quasi dolores modi eius aliquam
-            ipsum soluta, dolore tenetur excepturi praesentium porro alias itaque enim labore qui necessitatibus
-            molestias hic cum deserunt ab! Illum sed eveniet distinctio, alias sunt repudiandae labore a dolorum
-            tenetur? Harum deleniti mollitia odio neque.
+            <p>My name is Steve Ngoc Quoc, and I am currently developing my skills in video editing and motion graphics. I
+            have a foundational understanding of Adobe Premiere Pro and After Effects, with experience in basic motion
+            graphics creation using After Effects. Additionally, I possess basic knowledge of Photoshop, allowing me to
+            integrate graphic design elements into my work effectively. I am eager to continue learning and refining my
+            abilities in these creative tools to deliver engaging visual content.</p>
         </div>
         <div class="experience">
-            <h2>EXPERIENCE</h2>
-
-            <div class="item">
-                <h4>Frond-end Developer</h4>
-                <div class="time">
-                    <span>2020 - 2022</span>
-                    <span>ABC D company</span>
-                </div>
-                <div class="des">
-                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Architecto accusantium officia nobis quas
-                    excepturi consectetur quidem quia est neque doloremque.
-                </div>
-            </div>
-
+            <h2>EXPERIENCES</h2>
             <div class="item">
                 <h4>Student</h4>
                 <div class="time">
@@ -142,34 +83,39 @@
                 <li>Git</li>
                 <li>Laravel</li>
             </ul>
-
         </div>
         <div class="project">
             <h2>PROJECTS</h2>
             <div class="item">
-                <h4>Website shopping</h4>
+                <h4>School Projects</h4>
                 <div class="time">
-                    2020
-                </div>
-                <div class="web">
-                    www.ngao.tech
-                </div>
-                <div class="location">
-                    Frond-end Developer
+                    <span><i>2023 - Present</i></span>
                 </div>
                 <div class="des">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto consequatur amet sed, est eum facilis
-                    repellendus
-                    atque perspiciatis iste porro nobis autem explicabo expedita fugiat nostrum. Eveniet eum autem
-                    culpa!
                     <ul>
-                        <li>Lorem ipsum dolordolores.</li>
-                        <li>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consequuntur, dolores.</li>
-                        <li>Lorem ipsum dolor sit amet consectetur dolores.</li>
+                        <li>
+                            <strong>Student Assembly Video - Advocacy (2023):</strong>
+                            Edited a video for the student assembly, focusing on storytelling to raise awareness about
+                            advocacy using <em>Adobe Premiere Pro</em>.
+                        </li>
+                        <li>
+                            <strong>Short Film Project - Tắt Đèn (2023):</strong>
+                            Collaborated with classmates to create a short film for our Vietnamese subject, including
+                            finding a film crew, camerawork, video editing, and basic color grading to achieve an aged
+                            appearance.
+                        </li>
+                        <li>
+                            <strong>Book Vlog (2023):</strong>
+                            Create book vlogs by using video editing techniques and storytelling.
+                        </li>
+                        <li>
+                            <strong>Field Trip Vlog (Upcoming 2024):</strong>
+                            Currently working on a field trip vlog and making <em>motion graphics</em> for interesting
+                            in <em>Adobe After Effects</em>, using <em>Photoshop</em> to design an thumbnail for promotion. Using Premiere for editing to combine them and edit for the whole <b>Field Trip</b>.
+                        </li>
                     </ul>
                 </div>
             </div>
-
             <div class="item">
                 <h4>Website shopping</h4>
                 <div class="time">
@@ -179,36 +125,11 @@
                     www.ngao.tech
                 </div>
                 <div class="location">
-                    Frond-end Developer
+                    Front-end Developer
                 </div>
                 <div class="des">
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto consequatur amet sed, est eum facilis
-                    repellendus
-                    atque perspiciatis iste porro nobis autem explicabo expedita fugiat nostrum. Eveniet eum autem
-                    culpa!
-                    <ul>
-                        <li>Lorem ipsum dolordolores.</li>
-                        <li>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consequuntur, dolores.</li>
-                        <li>Lorem ipsum dolor sit amet consectetur dolores.</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="item">
-                <h4>Website shopping</h4>
-                <div class="time">
-                    2020
-                </div>
-                <div class="web">
-                    www.ngao.tech
-                </div>
-                <div class="location">
-                    Frond-end Developer
-                </div>
-                <div class="des">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto consequatur amet sed, est eum facilis
-                    repellendus
-                    atque perspiciatis iste porro nobis autem explicabo expedita fugiat nostrum. Eveniet eum autem
+                    repellendus atque perspiciatis iste porro nobis autem explicabo expedita fugiat nostrum. Eveniet eum autem
                     culpa!
                     <ul>
                         <li>Lorem ipsum dolordolores.</li>
@@ -222,12 +143,10 @@
             <button id="downloadPDF" class="download">Download PDF</button>
         </div>
     </div>
-    </div>
 
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <script src="script.js"></script>
 </body>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
-<script src="script.js"></script>
 
 </html>

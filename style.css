@@ -1,25 +1,61 @@
+:root {
+    --background-color: #ffffff;
+    --text-color: #333333;
+    --primary-color: #1e90ff;
+    --secondary-color: #4169e1;
+    --border-color: #e0e0e0;
+}
+
 body {
-    background-color: #D5D5D5;
-    font-family: system-ui;
+    background-color: var(--background-color);
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    color: var(--text-color);
+    transition: background-color 0.3s, color 0.3s;
+    margin: 0;
+    padding: 0;
+}
+
+body.dark-theme {
+    --background-color: #1a1a1a;
+    --text-color: #f0f0f0;
+    --primary-color: #4682b4;
+    --secondary-color: #6495ed;
+    --border-color: #444444;
 }
 
 .container {
-    background-color: #ffffff;
+    background-color: var(--background-color);
     width: 1000px;
     max-width: 100%;
-    margin: auto;
+    margin: 20px auto;
     padding: 50px;
-    box-shadow: 0 10px 50px #858585;
+    box-shadow: 0 10px 50px rgba(0, 0, 0, 0.1);
     display: grid;
     grid-template-columns: 35% 60%;
     column-gap: 5%;
     row-gap: 30px;
-    
+    position: relative;
+}
+
+.theme-toggle {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: none;
+    border: none;
+    color: var(--primary-color);
+    font-size: 24px;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.theme-toggle:hover {
+    color: var(--secondary-color);
 }
 
 .avatar img {
-    width: 250px;
-    height: 250px;
+    width: 200px;
+    height: 200px;
     object-fit: cover;
     border-radius: 50%;
 }
@@ -32,7 +68,7 @@ body {
 
 .name {
     padding-left: 30px;
-    border-left: 1px solid #000;
+    border-left: 1px solid var(--border-color);
 }
 
 .name h1 {
@@ -43,8 +79,8 @@ body {
 
 .name .specialize {
     margin: 0;
-    font-weight: bold; 
-    letter-spacing: 3px; font-size: 20px;
+    font-weight: bold;
+    letter-spacing: 3px;
 }
 
 .name .contact {
@@ -58,12 +94,11 @@ body {
     align-items: center;
     width: 25px;
     height: 25px;
-    background-color: #000;
-    color: #fff;
+    background-color: var(--primary-color);
+    color: var(--background-color);
     border-radius: 50%;
     margin-right: 20px;
 }
-
 
 .name .contact li {
     display: block;
@@ -71,9 +106,11 @@ body {
     padding: 5px 0;
     transform: translateX(-42px);
 }
+
 .name .contact span i {
     font-size: 14px;
 }
+
 .info ul {
     padding: 0;
     margin: 0;
@@ -85,11 +122,12 @@ body {
 h2 {
     padding: 0;
     margin: 0 0 20px 0;
+    color: var(--primary-color);
 }
 
 .intro {
     padding-left: 30px;
-    border-left: 1px solid #000;
+    border-left: 1px solid var(--border-color);
     text-align: justify;
 }
 
@@ -118,7 +156,7 @@ h2 {
 .project {
     padding-left: 30px;
     text-align: justify;
-    border-left: 1px solid #000;
+    border-left: 1px solid var(--border-color);
 }
 
 .project h4 {
@@ -126,7 +164,7 @@ h2 {
 }
 
 .project .web {
-    color: #0c7373;
+    color: var(--primary-color);
     padding: 10px 0;
 }
 
@@ -143,22 +181,21 @@ h2 {
     position: absolute;
     width: 13px;
     height: 13px;
-    background-color: #000;
+    background-color: var(--primary-color);
     content: '';
     border-radius: 50%;
     left: -37px;
 }
 
-
 .download {
     align-items: center;
     appearance: none;
-    background-color: #ffffff;
+    background-color: var(--background-color);
     border-radius: 4px;
     border-width: 0;
     box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px,rgba(45, 35, 66, 0.3) 0 7px 13px -3px,#D6D6E7 0 -3px 0 inset;
     box-sizing: border-box;
-    color: #36395A;
+    color: var(--text-color);
     cursor: pointer;
     display: inline-flex;
     font-family: system-ui;
@@ -196,7 +233,53 @@ h2 {
     transform: translateY(2px);
 }
 
-/* Media Queries for Responsive Design */
+.lg img {
+    width: 40px;
+    height: auto;
+    padding-right: 15px;
+    padding-top: 20px;
+}
+
+.lg > * {
+    transition: transform 0.3s ease;
+}
+
+.lg > *:hover {
+    transform: translateY(-8px);
+}
+
+.lg > *::before {
+    transition: transform 0.3s ease;
+}
+
+.lg > *:hover::before {
+    transform: translateY(-8px);
+}
+
+.linkEffect--insideOut::before {
+    content: "";
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    bottom: -2px;
+    left: 50%;
+    background-color: var(--primary-color);
+    transition: width 0.3s ease, left 0.3s ease;
+}
+
+.linkEffect--insideOut:hover::before {
+    width: 100%;
+    left: 0;
+}
+
+.linkEffect {
+    display: inline-block;
+    position: relative;
+    text-decoration: none;
+    color: var(--primary-color);
+    transition: color 0.3s ease;
+}
+
 @media screen and (max-width: 1024px) {
     .container {
         width: 90%;
@@ -282,4 +365,9 @@ h2 {
         padding: 0 !important;
         margin: 0 !important;
     }
+
+    .theme-toggle, .download {
+        display: none !important;
+    }
 }
+
