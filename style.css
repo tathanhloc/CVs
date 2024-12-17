@@ -133,6 +133,32 @@ h2 {
 
 .experience {
     text-align: right;
+    position: relative;
+}
+
+.experience-item {
+    position: relative;
+    padding-left: 60px;
+    margin-bottom: 40px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s, transform 0.5s;
+}
+
+.experience-item::before {
+    content: attr(data-number);
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-size: 48px;
+    font-weight: bold;
+    color: var(--primary-color);
+    opacity: 1  ;
+}
+
+.experience-item.visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .experience h4 {
@@ -325,6 +351,14 @@ h2 {
         text-align: left;
     }
 
+    .experience-item {
+        padding-left: 40px;
+    }
+
+    .experience-item::before {
+        font-size: 36px;
+    }
+
     .project .item::before {
         display: none;
     }
@@ -369,5 +403,187 @@ h2 {
     .theme-toggle, .download {
         display: none !important;
     }
+}
+
+/* Existing styles remain unchanged */
+
+/* Add these new styles for animations */
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.avatar, .name, .info, .intro, .experience, .project {
+    animation: fadeInUp 0.4s ease-out forwards;
+    opacity: 0;
+}
+
+.avatar {
+    animation-delay: 0.1s;
+}
+
+.name {
+    animation-delay: 0.3s;
+}
+
+.info {
+    animation-delay: 0.5s;
+}
+
+.intro {
+    animation-delay: 0.7s;
+}
+
+.experience {
+    animation-delay: 0.9s;
+}
+
+.project {
+    animation-delay: 1.1s;
+}
+
+.name h1 {
+    animation: slideInLeft 0.4s ease-out 0.5s forwards;
+    opacity: 0;
+}
+
+.name .specialize {
+    animation: slideInRight 0.4s ease-out 0.7s forwards;
+    opacity: 0;
+}
+
+.lg img {
+    animation: fadeInUp 0.4s ease-out 0.9s forwards;
+    opacity: 0;
+}
+
+.name .contact li {
+    animation: slideInLeft 0.4s ease-out forwards;
+    opacity: 0;
+}
+
+.name .contact li:nth-child(1) {
+    animation-delay: 1.1s;
+}
+
+.name .contact li:nth-child(2) {
+    animation-delay: 1.3s;
+}
+
+.name .contact li:nth-child(3) {
+    animation-delay: 1.5s;
+}
+
+.info ul li {
+    animation: slideInRight 0.4s ease-out forwards;
+    opacity: 0;
+}
+
+.info ul li:nth-child(1) {
+    animation-delay: 1.7s;
+}
+
+.info ul li:nth-child(2) {
+    animation-delay: 1.9s;
+}
+
+.info ul li:nth-child(3) {
+    animation-delay: 2.1s;
+}
+
+.experience-item {
+    animation: fadeInUp 0.4s ease-out forwards;
+    opacity: 0;
+}
+
+.experience-item:nth-child(1) {
+    animation-delay: 1.1s;
+}
+
+.experience-item:nth-child(2) {
+    animation-delay: 1.3s;
+}
+
+.experience-item:nth-child(3) {
+    animation-delay: 1.5s;
+}
+
+.skills {
+    animation: slideInLeft 0.4s ease-out 1.7s forwards;
+    opacity: 0;
+}
+
+.experience li {
+    animation: fadeInUp 0.4s ease-out forwards;
+    opacity: 0;
+}
+
+.experience li:nth-child(1) { animation-delay: 1.9s; }
+.experience li:nth-child(2) { animation-delay: 2s; }
+.experience li:nth-child(3) { animation-delay: 2.1s; }
+.experience li:nth-child(4) { animation-delay: 2.2s; }
+.experience li:nth-child(5) { animation-delay: 2.3s; }
+.experience li:nth-child(6) { animation-delay: 2.4s; }
+.experience li:nth-child(7) { animation-delay: 2.5s; }
+.experience li:nth-child(8) { animation-delay: 2.6s; }
+
+.project .item {
+    animation: fadeInUp 0.4s ease-out forwards;
+    opacity: 0;
+}
+
+.project .item:nth-child(1) {
+    animation-delay: 1.9s;
+}
+
+.project .item:nth-child(2) {
+    animation-delay: 2.1s;
+}
+
+.download {
+    animation: fadeInUp 0.4s ease-out 2.3s forwards;
+    opacity: 0;
+}
+
+/* Existing media queries and other styles remain unchanged */
+
+.not-animated {
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+body.dark-theme .experience-item::before {
+    color: var(--secondary-color);
+    opacity: 0.6;
+    text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.1);
 }
 
