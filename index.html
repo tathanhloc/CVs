@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
     <link rel="icon" type="image/x-icon" href="cv.png">
 </head>
+<style>
+</style>
 
 <body>
     <div class="container">
@@ -23,9 +25,18 @@
             <h1><b>STEVE</b> NGOC QUOC</h1>
             <div class="specialize">Video Editor</div>
             <div class="lg">
-                <img src="logo-dai-bang.png" style="width: 50px; padding-left: 0px;" alt="School of North America">
-                <img src="PREMIERE.png" alt="Adobe Premiere Pro">
-                <img src="AE.png" alt="Adobe After Effects">
+                <div class="lg-item">
+                    <img src="logo-dai-bang.png" alt="School of North America">
+                </div>
+                <div class="lg-item">
+                    <img src="PREMIERE.png" alt="Adobe Premiere Pro">
+                </div>
+                <div class="lg-item">
+                    <img src="AE.png" alt="Adobe After Effects">
+                </div>
+                <div class="lg-item">
+                    <img src="Rmit University-04.png" alt="RMIT University">
+                </div>
             </div>
             <ul class="contact">
                 <li>
@@ -46,12 +57,13 @@
             <ul>
                 <li>From <b>Phan Rang City, Vietnam</b></li>
                 <li>September 5, 2010</li>
-                <li>School of North America</li>
+                <li><b>RMIT University</b></li>
             </ul>
         </div>
         <div class="intro">
             <h2>INTRODUCTION</h2>
-            <p>I am an experienced with well <b>Video editing</b> skills and experience in groundwork, concrete finishing
+            <p>I am an experienced with well <b>Video editing</b> skills and experienced on Photoshop to made a
+                thumbnail for content creator, concrete finishing
                 and steel fixing and have worked in the construction industry since 1982. I am also a skilled labourer
                 who has supported many different trades over the years. I have a full clean UK driving licence with
                 entitlement of up to 7.5 tonne. I am keen to return to work after a period of training and personal
@@ -59,20 +71,23 @@
         </div>
         <div class="experience" id="experience">
             <h2>EXPERIENCES</h2>
-            <div class="experience-item" data-number="01">
+            <div class="experience-item">
                 <h4>Digital Film and Video</h4>
                 <div class="time">
                     <span><i>2029 - 2032</i><b><i> RMIT University</i></b></span>
                 </div>
                 <div class="des">
                     <ul>
-                        <li>Created over 80 short videos, ranging from promotional content to narrative pieces.</li>
-                        <li>Developed content for various platforms, including cinema and social media.</li>
-                        <li>Collaborated with cross-functional teams to deliver high-quality video projects.</li>
+                        <li>Edited over 80 videos, including short and long ones, from business to entertainment videos.
+                        </li>
+                        <li>Collaborated with other students to made video projects.</li>
+                        <li>Experiences on color grading techniques.</li>
+                        <li>Created 60+ motion graphics template for intro, outro to increase the energy of people
+                            watching.</li>
                     </ul>
                 </div>
             </div>
-            <div class="experience-item" data-number="02">
+            <div class="experience-item">
                 <h4>Freelance Video Editor</h4>
                 <div class="time">
                     <span><i>2028 - Present</i><b><i> Self-employed</i></b></span>
@@ -86,7 +101,7 @@
                     </ul>
                 </div>
             </div>
-            <div class="experience-item" data-number="03">
+            <div class="experience-item">
                 <h4>Video Production Intern</h4>
                 <div class="time">
                     <span><i>Summer 2027</i><b><i> Local News Station</i></b></span>
@@ -101,19 +116,7 @@
                     </ul>
                 </div>
             </div>
-            <h2 class="skills">
-                SKILLS
-            </h2>
-            <ul>
-                <li>Adobe Premiere Pro</li>
-                <li>Adobe After Effects</li>
-                <li>Adobe Photoshop</li>
-                <li>Creativity</li>
-                <li></li>
-                <li>MySql</li>
-                <li>Git</li>
-                <li>Laravel</li>
-            </ul>
+
         </div>
         <div class="project">
             <h2>PROJECTS</h2>
@@ -121,6 +124,7 @@
                 <h4>School Projects</h4>
                 <div class="time">
                     <span><i>2023 - 2025</i></span>
+                    <div class="web">ngao.tech/portfolio</div>
                 </div>
                 <div class="des">
                     <ul>
@@ -149,8 +153,22 @@
                     </ul>
                 </div>
             </div>
-            <div class="item">
-                <h4>Website shopping</h4>
+            <h2 class="skills">
+                SKILLS
+            </h2>
+            <ul class="skillslist">
+                <li>Adobe Premiere Pro</li>
+                <li>Adobe After Effects</li>
+                <li>Adobe Photoshop</li>
+                <li>Color grading</li>
+                <li>Motion graphics</li>
+                <li>Visual effects</li>
+                <li>Video editing</li>
+                <li>Audio editing</li>
+                <li>Creativity</li>
+            </ul>
+            <!--<div class="item">
+                <h4></h4>
                 <div class="time">
                     2030
                 </div>
@@ -172,16 +190,16 @@
                     </ul>
                 </div>
             </div>
+        </div>-->
+            <div>
+                <button id="downloadPDF" class="download">Download PDF</button>
+            </div>
         </div>
-        <div>
-            <button id="downloadPDF" class="download">Download PDF</button>
-        </div>
-    </div>
 
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
-    <script src="script.js"></script>
+        <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+        <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+        <script src="script.js"></script>
 </body>
 
 </html>
