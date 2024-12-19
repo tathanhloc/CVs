@@ -42,30 +42,39 @@ document.addEventListener('DOMContentLoaded', function() {
         const element = document.querySelector('.container');
         const downloadButton = document.getElementById('downloadPDF');
         const themeToggle = document.getElementById('themeToggle');
-        
+
         // Temporarily hide the download button and theme toggle
         downloadButton.style.display = 'none';
         themeToggle.style.display = 'none';
 
-        html2canvas(element, {
-            scale: 1,
-            useCORS: true,
-            logging: false,
-        }).then(function(canvas) {
-            const imgData = canvas.toDataURL('image/png', 1.0);
-            const pdf = new jspdf.jsPDF({
-                orientation: 'portrait',
-                unit: 'px',
-                format: [canvas.width, canvas.height]
+        // Add class to disable animations and background effects
+        document.body.classList.add('no-animations', 'plain-background');
+
+        // Wait for animations to complete
+        setTimeout(() => {
+            html2canvas(element, {
+                scale: 3, // Increase the scale factor for better resolution
+                useCORS: true,
+                logging: false,
+            }).then(function(canvas) {
+                const imgData = canvas.toDataURL('image/png', 1.0);
+                const pdf = new jspdf.jsPDF({
+                    orientation: 'portrait',
+                    unit: 'px',
+                    format: [canvas.width, canvas.height]
+                });
+
+                pdf.addImage(imgData, 'PNG', 0, 0, canvas.width, canvas.height);
+                pdf.save('steve_ngoc_quoc_resume.pdf');
+
+                // Show the download button and theme toggle again
+                downloadButton.style.display = '';
+                themeToggle.style.display = '';
+
+                // Remove class to re-enable animations and background effects
+                document.body.classList.remove('no-animations', 'plain-background');
             });
-
-            pdf.addImage(imgData, 'PNG', 0, 0, canvas.width, canvas.height);
-            pdf.save('steve_ngoc_quoc_resume.pdf');
-
-            // Show the download button and theme toggle again
-            downloadButton.style.display = '';
-            themeToggle.style.display = '';
-        });
+        }, 1500); // Adjust the delay as needed to ensure animations are complete
     }
 
     // Intersection Observer for experience items
@@ -90,4 +99,3 @@ document.addEventListener('DOMContentLoaded', function() {
         observer.observe(item);
     });
 });
-

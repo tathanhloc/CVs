@@ -25,10 +25,10 @@ body.dark-theme {
 
 .container {
     background-color: var(--background-color);
-    width: 1000px;
+    width: 1200px; /* Increased width */
     max-width: 100%;
-    margin: 20px auto;
-    padding: 50px;
+    margin: 40px auto; /* Increased margin */
+    padding: 60px; /* Increased padding */
     box-shadow: 0 10px 50px rgba(0, 0, 0, 0.1);
     display: grid;
     grid-template-columns: 35% 60%;
@@ -54,8 +54,8 @@ body.dark-theme {
 }
 
 .avatar img {
-    width: 200px;
-    height: 200px;
+    width: 220px; /* Increased size */
+    height: 220px; /* Increased size */
     object-fit: cover;
     border-radius: 50%;
 }
@@ -67,14 +67,14 @@ body.dark-theme {
 }
 
 .name {
-    padding-left: 30px;
+    padding-left: 40px; /* Increased padding */
     border-left: 1px solid var(--border-color);
 }
 
 .name h1 {
     font-weight: 300;
-    font-size: xxx-large;
-    margin: 0px 0 5px;
+    font-size: 3rem; /* Adjusted font size */
+    margin: 0px 0 10px; /* Adjusted margin */
 }
 
 .name .specialize {
@@ -92,8 +92,8 @@ body.dark-theme {
     display: inline-flex;
     justify-content: center;
     align-items: center;
-    width: 25px;
-    height: 25px;
+    width: 30px; /* Increased size */
+    height: 30px; /* Increased size */
     background-color: var(--primary-color);
     color: var(--background-color);
     border-radius: 50%;
@@ -108,7 +108,7 @@ body.dark-theme {
 }
 
 .name .contact span i {
-    font-size: 14px;
+    font-size: 16px; /* Adjusted font size */
 }
 
 .info ul {
@@ -126,7 +126,7 @@ h2 {
 }
 
 .intro {
-    padding-left: 30px;
+    padding-left: 40px; /* Increased padding */
     border-left: 1px solid var(--border-color);
     text-align: justify;
 }
@@ -142,7 +142,7 @@ h2 {
     margin-bottom: 40px;
     opacity: 0;
     transform: translateY(20px);
-    transition: opacity 0.5s, transform 0.5s;
+    transition: opacity 0.7s, transform 0.7s;
 }
 
 .experience-item::before {
@@ -184,7 +184,7 @@ h2 {
 }
 
 .project {
-    padding-left: 30px;
+    padding-left: 40px; /* Increased padding */
     text-align: justify;
     border-left: 1px solid var(--border-color);
 }
@@ -447,10 +447,10 @@ h2 {
 
 /* Add these new styles for animations */
 
-@keyframes fadeInUp {
+@keyframes fadeInDown {
     from {
         opacity: 0;
-        transform: translateY(20px);
+        transform: translateY(-20px);
     }
 
     to {
@@ -471,69 +471,62 @@ h2 {
     }
 }
 
-@keyframes slideInRight {
-    from {
-        opacity: 0;
-        transform: translateX(20px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
-
 .avatar,
 .name,
 .info,
 .intro,
 .experience,
-.project {
-    animation: fadeInUp 0.4s ease-out forwards;
+.project,
+.skills {
+    animation: fadeInDown 0.7s ease-out forwards;
     opacity: 0;
 }
 
 .avatar {
-    animation-delay: 0.1s;
+    animation-delay: 0.2s;
 }
 
 .name {
-    animation-delay: 0.3s;
+    animation-delay: 0.4s;
 }
 
 .info {
-    animation-delay: 0.5s;
+    animation-delay: 0.6s;
 }
 
 .intro {
-    animation-delay: 0.7s;
+    animation-delay: 0.8s;
 }
 
 .experience {
-    animation-delay: 0.9s;
+    animation-delay: 1s;
 }
 
 .project {
-    animation-delay: 1.1s;
+    animation-delay: 1.2s;
+}
+
+.skills {
+    animation-delay: 1.4s;
 }
 
 .name h1 {
-    animation: slideInLeft 0.4s ease-out 0.5s forwards;
+    animation: slideInLeft 0.7s ease-out 0.5s forwards;
     opacity: 0;
 }
 
 .name .specialize {
-    animation: slideInRight 0.4s ease-out 0.7s forwards;
+    animation: slideInLeft 0.7s ease-out 0.7s forwards;
     opacity: 0;
 }
 
 .lg img {
-    animation: fadeInUp 0.4s ease-out 0.9s forwards;
+    animation: fadeInDown 0.7s ease-out 0.9s forwards;
     opacity: 0;
 }
 
 .name .contact li {
-    animation: slideInLeft 0.4s ease-out forwards;
+    animation: slideInLeft 0.7s ease-out forwards;
     opacity: 0;
 }
 
@@ -550,7 +543,7 @@ h2 {
 }
 
 .info ul li {
-    animation: slideInRight 0.4s ease-out forwards;
+    animation: slideInLeft 0.7s ease-out forwards;
     opacity: 0;
 }
 
@@ -567,7 +560,7 @@ h2 {
 }
 
 .experience-item {
-    animation: fadeInUp 0.4s ease-out forwards;
+    animation: fadeInDown 0.7s ease-out forwards;
     opacity: 0;
 }
 
@@ -584,12 +577,12 @@ h2 {
 }
 
 .skills {
-    animation: slideInLeft 0.4s ease-out 1.7s forwards;
+    animation: slideInLeft 0.7s ease-out 1.7s forwards;
     opacity: 0;
 }
 
 .experience li {
-    animation: fadeInUp 0.4s ease-out forwards;
+    animation: fadeInDown 0.7s ease-out forwards;
     opacity: 0;
 }
 
@@ -626,7 +619,7 @@ h2 {
 }
 
 .project .item {
-    animation: fadeInUp 0.4s ease-out forwards;
+    animation: fadeInDown 0.7s ease-out forwards;
     opacity: 0;
 }
 
@@ -639,7 +632,7 @@ h2 {
 }
 
 .download {
-    animation: fadeInUp 0.4s ease-out 2.3s forwards;
+    animation: fadeInDown 0.7s ease-out 2.3s forwards;
     opacity: 0;
 }
 
@@ -654,4 +647,17 @@ body.dark-theme .experience-item::before {
     color: var(--secondary-color);
     opacity: 0.6;
     text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.1);
+}
+
+/* Add this at the end of your CSS file */
+.no-animations * {
+    animation: none !important;
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+}
+
+.plain-background .container {
+    background-color: #ffffff !important;
+    box-shadow: none !important;
 }
