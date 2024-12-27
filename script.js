@@ -34,48 +34,91 @@ document.addEventListener('DOMContentLoaded', function() {
         setTheme(e.matches);
     });
 
-    // Existing PDF download functionality
-    const downloadButton = document.getElementById('downloadPDF');
-    downloadButton.addEventListener('click', generatePDF);
+    // Updated PDF download functionality
+    async function handleDownload() {
+        const downloadButton = document.getElementById('btn-download');
+        const btnText = downloadButton.querySelector('.btn-text');
+    
+        downloadButton.classList.add('downloaded');
+        btnText.style.animation = 'textFadeOut 0.3s forwards';
 
-    function generatePDF() {
-        const element = document.querySelector('.container');
-        const downloadButton = document.getElementById('downloadPDF');
-        const themeToggle = document.getElementById('themeToggle');
+        setTimeout(() => {
+            btnText.textContent = 'Generating PDF...';
+            btnText.style.animation = 'textFadeIn 0.3s forwards';
+        }, 300);
 
         // Temporarily hide the download button and theme toggle
         downloadButton.style.display = 'none';
         themeToggle.style.display = 'none';
 
-        // Add class to disable animations and background effects
-        document.body.classList.add('no-animations', 'plain-background');
+        // Add print-specific styles
+        const style = document.createElement('style');
+        style.textContent = `
+            @media print {
+                body {
+                    width: 210mm;
+                    height: 297mm;
+                    margin: 0;
+                    padding: 0;
+                }
+                .container {
+                    width: 100%;
+                    height: 100%;
+                    box-shadow: none !important;
+                }
+                #btn-download, #themeToggle {
+                    display: none !important;
+                }
+            }
+        `;
+        document.head.appendChild(style);
 
-        // Wait for animations to complete
-        setTimeout(() => {
-            html2canvas(element, {
-                scale: 3, // Increase the scale factor for better resolution
+        // Wait for styles to apply
+        await new Promise(resolve => setTimeout(resolve, 500));
+
+        try {
+            const container = document.querySelector('.container');
+            const canvas = await html2canvas(container, {
+                scale: 2,
                 useCORS: true,
                 logging: false,
-            }).then(function(canvas) {
-                const imgData = canvas.toDataURL('image/png', 1.0);
-                const pdf = new jspdf.jsPDF({
-                    orientation: 'portrait',
-                    unit: 'px',
-                    format: [canvas.width, canvas.height]
-                });
-
-                pdf.addImage(imgData, 'PNG', 0, 0, canvas.width, canvas.height);
-                pdf.save('steve_ngoc_quoc_resume.pdf');
-
-                // Show the download button and theme toggle again
-                downloadButton.style.display = '';
-                themeToggle.style.display = '';
-
-                // Remove class to re-enable animations and background effects
-                document.body.classList.remove('no-animations', 'plain-background');
+                allowTaint: true,
+                foreignObjectRendering: true
             });
-        }, 1500); // Adjust the delay as needed to ensure animations are complete
+
+            const imgData = canvas.toDataURL('image/png');
+            const { jsPDF } = window.jspdf;
+            const pdf = new jsPDF('p', 'mm', 'a4');
+            const imgProps = pdf.getImageProperties(imgData);
+            const pdfWidth = pdf.internal.pageSize.getWidth();
+            const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+
+            pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
+            pdf.save('Steve_Ngoc_Quoc_CV.pdf');
+
+            btnText.textContent = 'Downloaded!';
+            btnText.style.animation = 'textFadeIn 0.3s forwards';
+        } catch (error) {
+            console.error('Error generating PDF:', error);
+            btnText.textContent = 'Error. Try again.';
+            btnText.style.animation = 'textFadeIn 0.3s forwards';
+        } finally {
+            // Clean up
+            document.head.removeChild(style);
+            downloadButton.style.display = '';
+            themeToggle.style.display = '';
+
+            setTimeout(() => {
+                downloadButton.classList.remove('downloaded');
+                btnText.textContent = 'Download CV';
+                btnText.style.animation = '';
+            }, 3000);
+        }
     }
+
+    // Update the event listener for the download button
+    const downloadButton = document.getElementById('btn-download');
+    downloadButton.addEventListener('click', handleDownload);
 
     // Intersection Observer for experience items
     const observerOptions = {
@@ -99,3 +142,4 @@ document.addEventListener('DOMContentLoaded', function() {
         observer.observe(item);
     });
 });
+
