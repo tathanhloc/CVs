@@ -38,76 +38,36 @@ document.addEventListener('DOMContentLoaded', function() {
     async function handleDownload() {
         const downloadButton = document.getElementById('btn-download');
         const btnText = downloadButton.querySelector('.btn-text');
-    
+
         downloadButton.classList.add('downloaded');
         btnText.style.animation = 'textFadeOut 0.3s forwards';
 
         setTimeout(() => {
-            btnText.textContent = 'Generating PDF...';
+            btnText.textContent = 'Downloading...';
             btnText.style.animation = 'textFadeIn 0.3s forwards';
         }, 300);
 
-        // Temporarily hide the download button and theme toggle
-        downloadButton.style.display = 'none';
-        themeToggle.style.display = 'none';
-
-        // Add print-specific styles
-        const style = document.createElement('style');
-        style.textContent = `
-            @media print {
-                body {
-                    width: 210mm;
-                    height: 297mm;
-                    margin: 0;
-                    padding: 0;
-                }
-                .container {
-                    width: 100%;
-                    height: 100%;
-                    box-shadow: none !important;
-                }
-                #btn-download, #themeToggle {
-                    display: none !important;
-                }
-            }
-        `;
-        document.head.appendChild(style);
-
-        // Wait for styles to apply
-        await new Promise(resolve => setTimeout(resolve, 500));
-
         try {
-            const container = document.querySelector('.container');
-            const canvas = await html2canvas(container, {
-                scale: 2,
-                useCORS: true,
-                logging: false,
-                allowTaint: true,
-                foreignObjectRendering: true
-            });
+            const response = await fetch('/Steve_Ngoc_Quoc_CV.pdf');
+            if (!response.ok) throw new Error('PDF not found');
 
-            const imgData = canvas.toDataURL('image/png');
-            const { jsPDF } = window.jspdf;
-            const pdf = new jsPDF('p', 'mm', 'a4');
-            const imgProps = pdf.getImageProperties(imgData);
-            const pdfWidth = pdf.internal.pageSize.getWidth();
-            const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
-
-            pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
-            pdf.save('Steve_Ngoc_Quoc_CV.pdf');
+            const blob = await response.blob();
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.style.display = 'none';
+            a.href = url;
+            a.download = 'Steve_Ngoc_Quoc_CV.pdf';
+            document.body.appendChild(a);
+            a.click();
+            window.URL.revokeObjectURL(url);
 
             btnText.textContent = 'Downloaded!';
             btnText.style.animation = 'textFadeIn 0.3s forwards';
         } catch (error) {
-            console.error('Error generating PDF:', error);
+            console.error('Error downloading PDF:', error);
             btnText.textContent = 'Error. Try again.';
             btnText.style.animation = 'textFadeIn 0.3s forwards';
         } finally {
-            // Clean up
-            document.head.removeChild(style);
-            downloadButton.style.display = '';
-            themeToggle.style.display = '';
-
             setTimeout(() => {
                 downloadButton.classList.remove('downloaded');
                 btnText.textContent = 'Download CV';
