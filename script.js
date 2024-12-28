@@ -51,6 +51,12 @@ document.addEventListener('DOMContentLoaded', function() {
             btnText.style.animation = 'textFadeIn 0.3s forwards';
         }, 300);
 
+        // Temporarily switch to light theme for PDF generation
+        const wasDarkTheme = body.classList.contains('dark-theme');
+        if (wasDarkTheme) {
+            body.classList.remove('dark-theme');
+        }
+
         try {
             const { jsPDF } = window.jspdf;
             const doc = new jsPDF();
@@ -63,7 +69,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const canvas = await html2canvas(container, {
                 scale: 2, // Increase the scale for better quality
                 useCORS: true, // Enable CORS if needed
-                logging: true // Enable logging for debugging
+                logging: false // Disable logging for production
             });
             const imgData = canvas.toDataURL('image/png');
 
@@ -97,6 +103,11 @@ document.addEventListener('DOMContentLoaded', function() {
             btnText.textContent = 'Error. Try again.';
             btnText.style.animation = 'textFadeIn 0.3s forwards';
         } finally {
+            // Restore the original theme
+            if (wasDarkTheme) {
+                body.classList.add('dark-theme');
+            }
+
             // Show buttons again after PDF generation
             downloadButton.style.display = 'flex';
             themeToggle.style.display = 'block';
