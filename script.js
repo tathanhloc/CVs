@@ -34,46 +34,34 @@ document.addEventListener('DOMContentLoaded', function() {
         setTheme(e.matches);
     });
 
-    // Updated PDF download functionality
+    // Generate PDF from HTML content
     async function handleDownload() {
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF();
+
+        // Hide the download button
         const downloadButton = document.getElementById('btn-download');
-        const btnText = downloadButton.querySelector('.btn-text');
+        downloadButton.classList.add('hidden');
 
-        downloadButton.classList.add('downloaded');
-        btnText.style.animation = 'textFadeOut 0.3s forwards';
+        // Temporarily disable animations
+        const container = document.querySelector('.container');
+        container.classList.add('no-animation');
 
-        setTimeout(() => {
-            btnText.textContent = 'Downloading...';
-            btnText.style.animation = 'textFadeIn 0.3s forwards';
-        }, 300);
+        // Use html2canvas to capture the HTML content
+        const canvas = await html2canvas(container);
+        const imgData = canvas.toDataURL('image/png');
 
-        try {
-            const response = await fetch('/Steve_Ngoc_Quoc_CV.pdf');
-            if (!response.ok) throw new Error('PDF not found');
+        // Add the image to the PDF
+        doc.addImage(imgData, 'PNG', 10, 10, 190, 0); // Adjust dimensions as needed
 
-            const blob = await response.blob();
-            const url = window.URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.style.display = 'none';
-            a.href = url;
-            a.download = 'Steve_Ngoc_Quoc_CV.pdf';
-            document.body.appendChild(a);
-            a.click();
-            window.URL.revokeObjectURL(url);
+        // Save the PDF
+        doc.save('Steve_Ngoc_Quoc_CV.pdf');
 
-            btnText.textContent = 'Downloaded!';
-            btnText.style.animation = 'textFadeIn 0.3s forwards';
-        } catch (error) {
-            console.error('Error downloading PDF:', error);
-            btnText.textContent = 'Error. Try again.';
-            btnText.style.animation = 'textFadeIn 0.3s forwards';
-        } finally {
-            setTimeout(() => {
-                downloadButton.classList.remove('downloaded');
-                btnText.textContent = 'Download CV';
-                btnText.style.animation = '';
-            }, 3000);
-        }
+        // Re-enable animations
+        container.classList.remove('no-animation');
+
+        // Show the download button again
+        downloadButton.classList.remove('hidden');
     }
 
     // Update the event listener for the download button

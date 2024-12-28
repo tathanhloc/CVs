@@ -640,114 +640,39 @@ body.dark-theme .experience-item::before {
 }
 
 #btn-download {
-  cursor: pointer;
-  display: block;
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  -webkit-tap-highlight-color: transparent;
-  position: absolute;
-  bottom: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: auto;
+    height: 48px;
+    border-radius: 24px;
+    padding: 0 20px;
+    background-color: #0077FF;
+    color: #ffffff;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
 }
 
 #btn-download:hover {
-  background: rgba(34, 50, 84, 0.03);
+    background-color: #0066CC;
 }
 
 #btn-download svg {
-  margin: 16px 0 0 16px;
-  fill: none;
-  transform: translate3d(0, 0, 0);
-}
-
-#btn-download svg polyline,
-#btn-download svg path {
-  stroke: #0077FF;
-  stroke-width: 2;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  transition: all 0.3s ease;
-  transition-delay: 0.3s;
-}
-
-#btn-download svg path#check {
-  stroke-dasharray: 38;
-  stroke-dashoffset: 114;
-  transition: all 0.4s ease;
-}
-
-#btn-download.downloaded svg .svg-out {
-  opacity: 0;
-  animation: drop 0.3s linear;
-  transition-delay: 0.4s;
-}
-
-#btn-download.downloaded svg path#check {
-  stroke: #20CCA5;
-  stroke-dashoffset: 174;
-  transition-delay: 0.4s;
-}
-
-@keyframes drop {
-  20% {
-    transform: translate(0, -3px);
-  }
-  80% {
-    transform: translate(0, 2px);
-  }
-  95% {
-    transform: translate(0, 0);
-  }
-}
-
-#btn-download {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: auto;
-  height: 48px;
-  border-radius: 24px;
-  padding: 0 20px;
-  background-color: #0077FF;
-  color: #ffffff;
-  font-weight: bold;
-  transition: all 0.3s ease;
-}
-
-#btn-download:hover {
-  background-color: #0066CC;
-}
-
-#btn-download svg {
-  margin: 0 10px 0 0;
+    margin: 0 10px 0 0;
 }
 
 #btn-download .btn-text {
-  font-size: 16px;
-  opacity: 1;
-  transition: opacity 0.3s ease;
+    font-size: 16px;
 }
 
-#btn-download.downloaded .btn-text {
-  opacity: 0;
+.no-animation * {
+    animation: none !important;
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
 }
 
-#btn-download svg polyline,
-#btn-download svg path {
-  stroke: #ffffff;
+.hidden {
+    display: none !important;
 }
-
-#btn-download.downloaded svg path#check {
-  stroke: #ffffff;
-}
-
-@keyframes textFadeOut {
-  0% { opacity: 1; transform: translateY(0); }
-  100% { opacity: 0; transform: translateY(-10px); }
-}
-
-@keyframes textFadeIn {
-  0% { opacity: 0; transform: translateY(10px); }
-  100% { opacity: 1; transform: translateY(0); }
-}
-
