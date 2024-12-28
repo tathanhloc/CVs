@@ -34,34 +34,79 @@ document.addEventListener('DOMContentLoaded', function() {
         setTheme(e.matches);
     });
 
-    // Generate PDF from HTML content
+    // PDF download functionality with animation handling
     async function handleDownload() {
-        const { jsPDF } = window.jspdf;
-        const doc = new jsPDF();
-
-        // Hide the download button
         const downloadButton = document.getElementById('btn-download');
-        downloadButton.classList.add('hidden');
+        const btnText = downloadButton.querySelector('.btn-text');
 
-        // Temporarily disable animations
-        const container = document.querySelector('.container');
-        container.classList.add('no-animation');
+        // Hide buttons during PDF generation
+        downloadButton.style.display = 'none';
+        themeToggle.style.display = 'none';
 
-        // Use html2canvas to capture the HTML content
-        const canvas = await html2canvas(container);
-        const imgData = canvas.toDataURL('image/png');
+        downloadButton.classList.add('downloaded');
+        btnText.style.animation = 'textFadeOut 0.3s forwards';
 
-        // Add the image to the PDF
-        doc.addImage(imgData, 'PNG', 10, 10, 190, 0); // Adjust dimensions as needed
+        setTimeout(() => {
+            btnText.textContent = 'Downloading...';
+            btnText.style.animation = 'textFadeIn 0.3s forwards';
+        }, 300);
 
-        // Save the PDF
-        doc.save('Steve_Ngoc_Quoc_CV.pdf');
+        try {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
 
-        // Re-enable animations
-        container.classList.remove('no-animation');
+            // Temporarily disable animations by adding the no-animation class
+            const container = document.querySelector('.container');
+            container.classList.add('no-animation');
 
-        // Show the download button again
-        downloadButton.classList.remove('hidden');
+            // Use html2canvas to capture the HTML content
+            const canvas = await html2canvas(container, {
+                scale: 2, // Increase the scale for better quality
+                useCORS: true, // Enable CORS if needed
+                logging: true // Enable logging for debugging
+            });
+            const imgData = canvas.toDataURL('image/png');
+
+            // Add the image to the PDF
+            const imgWidth = 190; // Width of the PDF page
+            const pageHeight = 295; // Height of the PDF page
+            const imgHeight = (canvas.height * imgWidth) / canvas.width;
+            let heightLeft = imgHeight;
+            let position = 10;
+
+            doc.addImage(imgData, 'PNG', 10, position, imgWidth, imgHeight);
+            heightLeft -= pageHeight;
+
+            while (heightLeft >= 0) {
+                position = heightLeft - imgHeight;
+                doc.addPage();
+                doc.addImage(imgData, 'PNG', 10, position, imgWidth, imgHeight);
+                heightLeft -= pageHeight;
+            }
+
+            // Save the PDF
+            doc.save('Steve_Ngoc_Quoc_CV.pdf');
+
+            // Re-enable animations
+            container.classList.remove('no-animation');
+
+            btnText.textContent = 'Downloaded!';
+            btnText.style.animation = 'textFadeIn 0.3s forwards';
+        } catch (error) {
+            console.error('Error downloading PDF:', error);
+            btnText.textContent = 'Error. Try again.';
+            btnText.style.animation = 'textFadeIn 0.3s forwards';
+        } finally {
+            // Show buttons again after PDF generation
+            downloadButton.style.display = 'flex';
+            themeToggle.style.display = 'block';
+
+            setTimeout(() => {
+                downloadButton.classList.remove('downloaded');
+                btnText.textContent = 'Download CV';
+                btnText.style.animation = '';
+            }, 3000);
+        }
     }
 
     // Update the event listener for the download button
@@ -90,4 +135,3 @@ document.addEventListener('DOMContentLoaded', function() {
         observer.observe(item);
     });
 });
-
